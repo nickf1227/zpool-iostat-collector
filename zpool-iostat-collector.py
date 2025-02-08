@@ -47,18 +47,12 @@ def convert_wait_to_ms(value):
         return 0.0
     return round(int(value) / 1_000_000, 2)
 
-def parse_zpool_iostat(input_lines, pool_name):
+def parse_zpool_iostat(input_lines, pool_name, current_timestamp):
     data = []
-    timestamp = None
     
     for line in input_lines:
         line = line.strip()
         if not line:
-            continue
-        
-        # Capture timestamp
-        if re.match(r"^\w{3} \w{3} \d{1,2} \d{2}:\d{2}:\d{2} \w{3} \d{4}$", line):
-            timestamp = line
             continue
         
         # Capture data line for the pool
@@ -67,7 +61,7 @@ def parse_zpool_iostat(input_lines, pool_name):
             if len(fields) >= 18:  # Ensure there are enough fields (adjusted from 19)
                 try:
                     new_row = [
-                        timestamp,
+                        current_timestamp,  # Use generated timestamp
                         pool_name,
                         fields[1],   # alloc
                         fields[2],   # free
@@ -88,7 +82,7 @@ def parse_zpool_iostat(input_lines, pool_name):
                         convert_wait_to_ms(fields[17])   # rebuild_wait
                     ]
                     data.append(new_row)
-                except ValueError as e:
+                except (ValueError, IndexError) as e:
                     print(f"Error parsing line: {line}. Error: {e}")
                     continue
 
@@ -101,11 +95,14 @@ def collect_zpool_iostat():
     if result.returncode != 0:
         print(f"Error running command: {result.stderr}")
         return []
-
+    
+    # Generate current timestamp
+    current_timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    
     print("Command output:")
     print(result.stdout)
     input_lines = result.stdout.splitlines()
-    data = parse_zpool_iostat(input_lines, POOL_NAME)
+    data = parse_zpool_iostat(input_lines, POOL_NAME, current_timestamp)
     if not data:
         print("No data parsed from command output. Check field alignment.")
     return data
