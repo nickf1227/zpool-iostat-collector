@@ -20,8 +20,10 @@ This script collects performance metrics from a ZFS pool using `zpool iostat` an
 3. You can call the script by running `python3 /mnt/tank/tn_scripts/zpool-iostat-collector/zpool-iostat-collector.py`
 4. If you have more than one pool you would like to monitor, you would need to copy the `zpool-iostat-collector.py` file.
 6. Something like this could work. Using full paths here to be clear, sorry for the noise :)
+   
 ```cp /mnt/tank/tn_scripts/zpool-iostat-collector/zpool-iostat-collector.py /mnt/tank/tn_scripts/zpool-iostat-collector/zpool-iostat-collector-pool1.py && mv /mnt/tank/tn_scripts/zpool-iostat-collector/zpool-iostat-collector.py /mnt/tank/tn_scripts/zpool-iostat-collector/zpool-iostat-collector-pool2.py```
-7. Then you would have to configure them booth (see below) and call them both individually.
+
+8. Then you would have to configure them booth (see below) and call them both individually.
 
 
 ## Configuration
