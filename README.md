@@ -63,23 +63,9 @@ Mon Mar 20 14:30:00 UTC 2023,ice,100G,500G,150,80,45.2,22.7,1.2,0.8,0.5,0.3,0.1,
 
 ## Troubleshooting
 
-1. **`zpool` command not found**:
-   - Ensure ZFS utilities are installed (see [Installation](#installation))
-
-2. **Permission denied errors**:
+1. **Permission denied errors**:
    - Run the script with `sudo` if needed (e.g., `sudo python3 zpool_iostat.py`)
-
-3. **No data in CSV**:
-   - Verify the pool name matches your ZFS pool
-   - Check if `zpool iostat <POOL_NAME>` returns valid data manually
-
-4. **Field parsing errors**:
-   - Ensure your `zpool iostat` output format matches the expected format (test with `zpool iostat -l -T d -p`)
 
 ## Contributing
 
 Contributions are welcome! Open an issue or submit a pull request for improvements.
-
-## License
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
