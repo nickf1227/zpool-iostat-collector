@@ -10,7 +10,7 @@ print("Starting zpool_iostat script...")
 
 # Configurable settings
 POOL_NAME = "tank"               # ZFS pool name
-SAMPLING_INTERVAL = 10          # Sampling interval in seconds (e.g., 60 for 1-minute samples)
+SAMPLING_INTERVAL = 30          # Sampling interval in seconds (e.g., 60 for 1-minute samples)
 SAMPLING_FREQUENCY = 60        # How often to collect samples in seconds (e.g., 300 = 5 minutes)
 CSV_OUTPUT_PATH = "."           # Output directory for CSV file
 
