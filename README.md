@@ -12,21 +12,13 @@ This script collects performance metrics from a ZFS pool using `zpool iostat` an
 - Configurable sampling intervals and output directory
 - Runs continuously until manually stopped
 
-## Prerequisites
-
-- Python 3.x
-- ZFS utilities (`zpool` command must be available)
-- Tested on Linux/Unix systems with ZFS support
 
 ## Installation
 
 1. Clone or download the script to your system.
 2. Ensure Python 3 and ZFS utilities are installed:
 
-   ```bash
-   # For Ubuntu/Debian
-   sudo apt-get install python3 zfsutils-linux
-   ```
+
 
 ## Configuration
 
